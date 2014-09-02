@@ -10,6 +10,7 @@ BASE_URL = "https://blockchain.info/"
 
 def call_api(resource, data = None):
     try:
+        #print urllib.urlencode(data)
         return urllib2.urlopen(BASE_URL + resource,
                                 None if data is None else urllib.urlencode(data)).read()
     except urllib2.HTTPError as e:
