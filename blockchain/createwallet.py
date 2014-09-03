@@ -4,7 +4,7 @@ TODO
 import util
 import json
  
-def create_wallet(self, password, api_code, priv = None, label = None, email = None):
+def create_wallet(password, api_code, priv = None, label = None, email = None):
         params = { 'password': password, 'api_code': api_code }
         if priv is not None:
             params['priv'] = priv

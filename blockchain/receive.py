@@ -9,10 +9,11 @@ class PaymentResponse:
         self.input_address = input
         self.callback_url = callback
 
-def receive(dest_addr, callback):
-    #util.validate_address(dest_addr)
-    #util.validate_url(callback)
-    resp = util.call_api("api/receive?method=create&address={0}&callback={1}".format(dest_addr, callback))
+def receive(dest_addr, callback, api_code = None):
+    params = { 'method': 'create', 'address': dest_addr, 'callback': callback }
+    if api_code is not None:
+        params['api_code'] = api_code
+    resp = util.call_api('api/receive', params)
     json_resp = json.loads(resp)
     payment_response = PaymentResponse(json_resp['fee_percent'],
                                         json_resp['destination'],

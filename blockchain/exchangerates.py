@@ -10,8 +10,8 @@ class Currency:
         self.symbol = symbol
         self.p15min = p15min
 
-def ticker():
-    response = util.call_api("ticker")
+def ticker(api_code = None):
+    response = util.call_api('ticker' if api_code is None else 'ticker?api_code=' + api_code)
     json_response = json.loads(response)
     ticker = {}
     for key in json_response:
@@ -24,5 +24,8 @@ def ticker():
         ticker[key] = ccy
     return ticker
 
-def tobtc(ccy, value):
-    return util.call_api("tobtc?currency={0}&value={1}".format(ccy, value))
+def to_btc(ccy, value, api_code = None):
+    res = 'tobtc?currency={0}&value={1}'.format(ccy, value)
+    if api_code is not None:
+        res += '&api_code=' + api_code
+    return util.call_api(res)

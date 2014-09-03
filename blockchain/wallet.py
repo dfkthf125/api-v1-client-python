@@ -13,7 +13,7 @@ class Wallet:
     
     """
     
-    def __init__(self, identifier, password, second_password = None):
+    def __init__(self, identifier, password, second_password = None, api_code = None):
         """Initializes a wallet object.
         
         Parameters
@@ -29,6 +29,7 @@ class Wallet:
         self.identifier = identifier
         self.password = password
         self.second_password = second_password
+        self.api_code = api_code
     
     def send(self, to, amount, from_address = None, shared = False, fee = None, note = None):
         """
@@ -144,6 +145,8 @@ class Wallet:
         params = { 'password': self.password }
         if self.second_password is not None:
             params['second_password'] = self.second_password
+        if self.api_code is not None:
+            params['api_code'] = self.api_code
         return params
         
     def parse_error(self, json_response):
