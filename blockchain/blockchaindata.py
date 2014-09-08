@@ -72,6 +72,14 @@ def get_blocks(time = None, pool_name = None, api_code = None):
     json_response = json.loads(response)
     return [SimpleBlock(b) for b in json_response['blocks']]
 
+def get_inventory_data(hash, api_code = None):
+    resource = 'inv/{0}?format=json'.format(hash)
+    if api_code is not None:
+        resource += '&api_code=' + api_code
+    response = util.call_api(resource)
+    json_response = json.loads(response)
+    return InventoryData(json_response)
+    
 def parse_block(b):
     block_height = b['height']
     txs = [Transaction(t) for t in b['tx']]
@@ -161,23 +169,51 @@ class Transaction:
         self.outputs = [Output(o) for o in t['out']]
     
 class Block:
-    def __init__(self, hash, version, previous_block, merkle_root, time,
-                    bits, fee, nonce, n_tx, size, block_index, main_chain,
-                    height, received_time, relayed_by, transactions):
-        self.hash = hash
-        self.version = version
-        self.previous_block = previous_block
-        self.merkle_root = merkle_root
-        self.time = time
-        self.bits = bits
-        self.fee = fee
-        self.nonce = nonce
-        self.n_tx = n_tx
-        self.size = size
-        self.block_index = block_index
-        self.main_chain = main_chain
-        self.height = height
-        self.received_time = received_time if received_time is not None else time
-        self.relayed_by = relayed_by
-        self.transactions = transactions
+    def __init__(self, b):
+        self.hash = b['hash']
+        self.version = b['ver']
+        self.previous_block = b['prev_block']
+        self.merkle_root = b['mrkl_root']
+        self.time = b['time']
+        self.bits = b['bits']
+        self.fee = b['fee']
+        self.nonce = b['nonce']
+        self.n_tx = b['n_tx']
+        self.size = b['size']
+        self.block_index = b['block_index']
+        self.main_chain = b['main_chain']
+        self.height = b['height']
+        self.received_time = b.get('received_time', b['time'])
+        self.relayed_by = b.get('relayed_by')
+        self.transactions = [Transaction(t) for t in b['tx']]
+        for tx in txs:
+            tx.block_height = block_height
+
+class InventoryData:
+    def __init__(self, i):
+        self.hash = i['hash']
+        self.type = i['type']
+        self.initial_time = i['initial_time']
+        self.initial_ip = i['initial_ip']
+        self.nconnected = i['nconnected']
+        self.relayed_count = i['relayed_count']
+        self.relayed_percent = i['relayed_percent']
+        self.probable_owners =[]
+        self.mining_nodes = []
         
+        for o in i['probable_owners']:
+            owner = ProbableOwner()
+            owner.ip = o['ip']
+            owner.confidence = o['confidence']
+            probable_owners.append(owner)
+        
+        for m in i['mining_nodes']:
+            node = MiningNode()
+            node.link = m['link']
+            node.name = m['name']
+            
+class ProbableOwner:
+    pass
+    
+class MiningNode:
+    pass
