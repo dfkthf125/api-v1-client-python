@@ -7,7 +7,7 @@ def get_block(block_id, api_code = None):
         resource += '?api_code=' + api_code
     response = util.call_api(resource)
     json_response = json.loads(response)
-    return parse_block(json_response)
+    return Block(json_response)
 
 def get_tx(tx, api_code = None):
     resource = 'rawtx/' + tx
@@ -23,7 +23,7 @@ def get_block_height(height, api_code = None):
         resource += '&api_code=' + api_code
     response = util.call_api(resource)
     json_response = json.loads(response)
-    return [parse_block(b) for b in json_response['blocks']]
+    return [Block(b) for b in json_response['blocks']]
 
 def get_address(address, api_code = None):
     resource = 'rawaddr/' + address
@@ -79,16 +79,6 @@ def get_inventory_data(hash, api_code = None):
     response = util.call_api(resource)
     json_response = json.loads(response)
     return InventoryData(json_response)
-    
-def parse_block(b):
-    block_height = b['height']
-    txs = [Transaction(t) for t in b['tx']]
-    for tx in txs:
-        tx.block_height = block_height
-    return Block(b['hash'], b['ver'], b['prev_block'], b['mrkl_root'], b['time'], b['bits'],
-                    b['fee'], b['nonce'], b['n_tx'], b['size'], b['block_index'], b['main_chain'],
-                    b['height'], b.get('received_time'), b.get('relayed_by'), txs)
-
                     
 class SimpleBlock:
     def __init__(self, b):
@@ -186,8 +176,8 @@ class Block:
         self.received_time = b.get('received_time', b['time'])
         self.relayed_by = b.get('relayed_by')
         self.transactions = [Transaction(t) for t in b['tx']]
-        for tx in txs:
-            tx.block_height = block_height
+        for tx in self.transactions:
+            tx.block_height = self.height
 
 class InventoryData:
     def __init__(self, i):
