@@ -1,7 +1,19 @@
+"""This module corresponds to functionality documented
+at https://blockchain.info/api/blockchain_api
+
+"""
+
 import util
 import json
 
 def get_block(block_id, api_code = None):
+    """Get a single block based on a block index or hash.
+    
+    :param str block_id: block hash or index to look up
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an instance of :class:`Block` class
+    """
+    
     resource = 'rawblock/' + block_id
     if api_code is not None:
         resource += '?api_code=' + api_code
@@ -10,6 +22,13 @@ def get_block(block_id, api_code = None):
     return Block(json_response)
 
 def get_tx(tx, api_code = None):
+    """Get a single transaction based on a transaction index or hash.
+    
+    :param str block_id: transaction hash or index to look up
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an instance of :class:`Transaction` class
+    """
+    
     resource = 'rawtx/' + tx
     if api_code is not None:
         resource += '?api_code=' + api_code
@@ -18,6 +37,13 @@ def get_tx(tx, api_code = None):
     return Transaction(json_response)
 
 def get_block_height(height, api_code = None):
+    """Get an array of blocks at the specified height.
+    
+    :param int height: block height to look up
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an array of :class:`Block` objects
+    """
+    
     resource = 'block-height/{0}?format=json'.format(height)
     if api_code is not None:
         resource += '&api_code=' + api_code
@@ -26,6 +52,13 @@ def get_block_height(height, api_code = None):
     return [Block(b) for b in json_response['blocks']]
 
 def get_address(address, api_code = None):
+    """Get data for a single address.
+    
+    :param str address: address to look up
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an instance of :class:`Address` class
+    """
+    
     resource = 'rawaddr/' + address
     if api_code is not None:
         resource += '?api_code=' + api_code
@@ -34,6 +67,13 @@ def get_address(address, api_code = None):
     return Address(json_response)
     
 def get_unspent_outputs(address, api_code = None):
+    """Get unspent outputs for a single address.
+    
+    :param str address: address to look up
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an array of :class:`UnspentOutput` objects
+    """
+    
     resource = 'unspent?active=' + address
     if api_code is not None:
         resource += '&api_code=' + api_code
@@ -42,6 +82,12 @@ def get_unspent_outputs(address, api_code = None):
     return [UnspentOutput(o) for o in json_response['unspent_outputs']]
 
 def get_latest_block(api_code = None):
+    """Get the latest block on the main chain.
+    
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an instance of :class:`LatestBlock` class
+    """
+    
     resource = 'latestblock'
     if api_code is not None:
         resource += '?api_code=' + api_code
@@ -50,6 +96,12 @@ def get_latest_block(api_code = None):
     return LatestBlock(json_response)
     
 def get_unconfirmed_tx(api_code = None):
+    """Get a list of currently unconfirmed transactions.
+    
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an array of :class:`Transaction` objects
+    """
+    
     resource = 'unconfirmed-transactions?format=json'
     if api_code is not None:
         resource += '&api_code=' + api_code
@@ -58,6 +110,15 @@ def get_unconfirmed_tx(api_code = None):
     return [Transaction(t) for t in json_response['txs']]
 
 def get_blocks(time = None, pool_name = None, api_code = None):
+    """Get a list of blocks for a specific day or mining pool.
+    Both parameters are optional but at least one is required.
+    
+    :param int time: time in milliseconds
+    :param str pool_name: name of the mining pool
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an array of :class:`SimpleBlock` objects
+    """
+    
     resource = 'blocks/{0}?format=json'
     if api_code is not None:
         resource += '&api_code=' + api_code
@@ -73,6 +134,12 @@ def get_blocks(time = None, pool_name = None, api_code = None):
     return [SimpleBlock(b) for b in json_response['blocks']]
 
 def get_inventory_data(hash, api_code = None):
+    """Get inventory data.
+    
+    :param str hash: tx or block hash
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an instance of :class:`InventoryData` class
+    """
     resource = 'inv/{0}?format=json'.format(hash)
     if api_code is not None:
         resource += '&api_code=' + api_code

@@ -1,10 +1,23 @@
+"""This module corresponds to functionality documented
+at https://blockchain.info/api/create_wallet
+
 """
-TODO
-"""
+
 import util
 import json
- 
+
 def create_wallet(password, api_code, priv = None, label = None, email = None):
+        """Create a new Blockchain.info wallet. It can be created containing a 
+        pre-generated private key or will otherwise generate a new private key. 
+
+        :param str password: password for the new wallet. At least 10 characters.
+        :param str api_code: API code with create wallets permission
+        :param str priv: private key to add to the wallet (optional)
+        :param str label: label for the first address in the wallet (optional)
+        :param str email: email to associate with the new wallet (optional)
+        :return: an instance of :class:`WalletResponse` class
+        """
+        
         params = { 'password': password, 'api_code': api_code }
         if priv is not None:
             params['priv'] = priv

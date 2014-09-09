@@ -1,8 +1,13 @@
+"""This module corresponds to functionality documented
+at https://blockchain.info/api/api_receive
+"""
+
 import urllib2
 import util
 import json
 
 class PaymentResponse:
+
     def __init__(self, fee, dest, input, callback):
         self.fee = fee
         self.destination_address = dest
@@ -10,6 +15,14 @@ class PaymentResponse:
         self.callback_url = callback
 
 def receive(dest_addr, callback, api_code = None):
+    """Call the 'api/receive' endpoint and create a forwarding address.
+    
+    :param str dest_addr: destination address where the payment should be sent
+    :param str callback: callback URI that will be called upon payment
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an instance of :class:`PaymentResponse` class
+    """
+    
     params = { 'method': 'create', 'address': dest_addr, 'callback': callback }
     if api_code is not None:
         params['api_code'] = api_code

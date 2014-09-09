@@ -1,7 +1,18 @@
+"""This module corresponds to functionality documented
+at https://blockchain.info/api/charts_api
+
+"""
+
 import util
 import json
 
 def get(api_code = None):
+    """Get network statistics.
+    
+    :param str api_code: Blockchain.info API code (optional)
+    :return: an instance of :class:`Stats` class
+    """
+    
     resource = 'stats?format=json'
     if api_code is not None:
         resource += '&api_code=' + api_code
