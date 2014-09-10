@@ -215,8 +215,6 @@ class Transaction:
         self.double_spend = t.get('double_spend', False)
         self.block_height = t.get('block_height')
         self.time = t['time']
-        self.vout_sz = t['vout_sz']
-        self.vin_sz = t['vin_sz']
         self.relayed_by = t['relayed_by']
         self.hash = t['hash']
         self.tx_index = t['tx_index']
@@ -250,18 +248,18 @@ class InventoryData:
     def __init__(self, i):
         self.hash = i['hash']
         self.type = i['type']
-        self.initial_time = i['initial_time']
+        self.initial_time = int(i['initial_time'])
         self.initial_ip = i['initial_ip']
-        self.nconnected = i['nconnected']
-        self.relayed_count = i['relayed_count']
-        self.relayed_percent = i['relayed_percent']
+        self.nconnected = int(i['nconnected'])
+        self.relayed_count = int(i['relayed_count'])
+        self.relayed_percent = int(i['relayed_percent'])
         self.probable_owners =[]
         self.mining_nodes = []
         
         for o in i['probable_owners']:
             owner = ProbableOwner()
             owner.ip = o['ip']
-            owner.confidence = o['confidence']
+            owner.confidence = int(o['confidence'])
             probable_owners.append(owner)
         
         for m in i['mining_nodes']:

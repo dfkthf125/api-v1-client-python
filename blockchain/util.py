@@ -2,8 +2,6 @@ import urllib
 import urllib2
 
 from .exceptions import *
-from validation import validate
-from urlparse import urlparse
 
 BASE_URL = "https://blockchain.info/"
 
