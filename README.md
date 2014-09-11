@@ -22,11 +22,51 @@ The main module is called `blockchain`
 All functions support an optional parameter called `api_code`
 
 Get a single block based on a block index or hash:
-
-```
+```python
 from blockchain import blockchaindata
 
 block = blockchaindata.get_block('000000000000000016f9a2c3e0f4c1245ff24856a79c34806969f5084f410680')
+```
+
+Get a single transaction based on a transaction index or hash:
+```python
+tx = blockchaindata.get_transaction('d4af240386cdacab4ca666d178afc88280b620ae308ae8d2585e9ab8fc664a94')
+```
+
+Get an array of blocks at the specified height. Returns a `Block` object.
+```python
+blocks = blockchaindata.get_block_height(2570)
+```
+
+Get a single address and its transactions. Returns an `Address` object.
+```python
+address = blockchaindata.get_address('1HS9RLmKvJ7D1ZYgfPExJZQZA1DMU3DEVd')
+```
+
+Get an array of unspent outputs for an address. Returns an array of `UnspentOutput` objects.
+```python
+outs = blockchaindata.get_unspent_outputs('1HS9RLmKvJ7D1ZYgfPExJZQZA1DMU3DEVd')
+```
+
+Get the latest block on the main chain. Returns a `LatestBlock` object.
+```python
+latest_block = blockchaindata.get_latest_block()
+```
+
+Get a list of currently unconfirmed transactions. Returns an array of `Transaction` objects.
+```python
+txs = blockchaindata.get_unconfirmed_tx()
+```
+
+Get a list of blocks for a specific day or mining pool. Parameters are `time` (int, unix time in ms) and `pool_name` (str). Both parameters are optional but at least one is required. Returns an array of `SimpleBlock` objects.
+```python
+blocks = blockchaindata.get_blocks(pool_name = 'Discus Fish')
+```
+
+Get inventory data for recent blocks and addresses. Parameter is either a block or tx hash. Only objects up to one hour are returned. Returns an `InventoryData` object.
+
+```python
+inv = blockchaindata.get_inventory_data('d4af240386cdacab4ca666d178afc88280b620ae308ae8d2585e9ab8fc664a94')
 ```
 
 ###Response object field definitions
