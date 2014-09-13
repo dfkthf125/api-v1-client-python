@@ -21,7 +21,7 @@ def get_block(block_id, api_code = None):
     json_response = json.loads(response)
     return Block(json_response)
 
-def get_tx(tx, api_code = None):
+def get_tx(tx_id, api_code = None):
     """Get a single transaction based on a transaction index or hash.
     
     :param str block_id: transaction hash or index to look up
@@ -29,7 +29,7 @@ def get_tx(tx, api_code = None):
     :return: an instance of :class:`Transaction` class
     """
     
-    resource = 'rawtx/' + tx
+    resource = 'rawtx/' + tx_id
     if api_code is not None:
         resource += '?api_code=' + api_code
     response = util.call_api(resource)
