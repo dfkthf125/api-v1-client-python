@@ -31,7 +31,7 @@ def to_btc(ccy, value, api_code = None):
     """Call the 'tobtc' method and convert x value in the provided currency to BTC.
     
     :param str ccy: currency code
-    :param int value: value to convert
+    :param float value: value to convert
     :param str api_code: Blockchain.info API code
     :return: the value in BTC
     """
