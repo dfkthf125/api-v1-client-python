@@ -7,8 +7,8 @@ An official Python module for interacting with the Blockchain.info API.
 The module consists of the following sub-modules:
 
 * `blockchaindata` ([docs](docs/blockchaindata.md)) ([api/blockchain_api][api1])
-* `createwallet` ([docs](docs/createwallet.md)[api/create_wallet][api2])
-* `exchangerates` ([docs](docs/exchangerates.md)[api/exchange\_rates\_api][api3])
+* `createwallet` ([docs](docs/createwallet.md))[api/create_wallet][api2])
+* `exchangerates` ([docs](docs/exchangerates.md))[api/exchange\_rates\_api][api3])
 * `receive` ([api/api_receive][api4])
 * `statistics` ([api/charts_api][api5])
 * `wallet` ([api/blockchain\_wallet\_api][api6])
