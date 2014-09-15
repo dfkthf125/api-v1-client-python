@@ -28,14 +28,12 @@ class Wallet:
         self.second_password = second_password
         self.api_code = api_code
     
-    def send(self, to, amount, from_address = None, shared = False, fee = None, note = None):
+    def send(self, to, amount, from_address = None, fee = None, note = None):
         """Send bitcoin from your wallet to a single address.
 
         :param str to: recipient bitcoin address
         :param int amount: amount to send (in satoshi)
         :param str from_address: specific address to send from (optional)
-        :param bool shared: indicating whether the transaction should be sent through
-                            a shared wallet (optional)
         :param int fee: transaction fee in satoshi. Must be greater than the default
                         fee (optional).
         :param str note: public note to include with the transaction (optional)
@@ -43,16 +41,14 @@ class Wallet:
         """
         
         recipient = { to: amount }
-        return self.send_many(recipient, from_address, shared, fee, note)
+        return self.send_many(recipient, from_address, fee, note)
 
-    def send_many(self, recipients, from_address = None, shared = False, fee = None, note = None):
+    def send_many(self, recipients, from_address = None, fee = None, note = None):
         """Send bitcoin from your wallet to multiple addresses.
 
         :param str to: recipient bitcoin address
         :param dictionary recipients: dictionary with the structure of 'address':amount
         :param str from_address: specific address to send from (optional)
-        :param bool shared: indicating whether the transaction should be sent through
-                            a shared wallet (optional)
         :param int fee: transaction fee in satoshi. Must be greater than the default
                         fee (optional).
         :param str note: public note to include with the transaction (optional)
@@ -73,8 +69,6 @@ class Wallet:
         
         if from_address is not None:
             params['from'] = from_address
-        if shared is True:
-            params['shared'] = 'true'
         if fee is not None:
             params['fee'] = fee
         if note is not None:
@@ -126,8 +120,8 @@ class Wallet:
             
         return addresses
         
-    def get_address_balance(self, address, confirmations = 0):
-        """Retrieve the balance of a bitcoin address in the wallet.
+    def get_address(self, address, confirmations = 0):
+        """Retrieve an address from the wallet.
         
         :param str address: address in the wallet to look up
         :param int confirmations: minimum number of confirmations transactions 
@@ -148,7 +142,7 @@ class Wallet:
                         json_response['total_received'])
     
     def new_address(self, label = None):
-        """Generate a new address.
+        """Generate a new address and add it to the wallet.
         
         :param str label:  label to attach to this address (optional)
         :return: an instance of :class:`Address` class
@@ -198,7 +192,7 @@ class Wallet:
         
         :param int days: addresses which have not received any
                             transactions in at least this many days will be consolidated.
-        :return: a string array of addresses
+        :return: a string array of consolidated addresses
         """
         
         params = self.build_basic_request()
