@@ -1,43 +1,30 @@
-##`exchangerates` module
+##`receive` module
 
-All functions support an optional parameter called `api_code`. It won't be listed with every function description.
-
-####`get_ticker`
-Call the 'ticker' method and return a dictionary of `Currency` objects. Keys are currency symbols (str) and values are `Currency` objects.
-
-
-Usage:
-```python
-from blockchain import exchangerates
-
-ticker = exchangerates.get_ticker()
-#print the 15 min price for every currency
-for k in ticker:
-	print k, ticker[k].p15min
-```
-
-####`to_btc`
-Call the 'tobtc' method and convert x value in the provided currency to BTC. Returns a `float`.
+####`receive`
+Call the 'api/receive' endpoint and create a forwarding address. Returns a `ReceiveResponse` object.
 
 Params:
 ```
-ccy : str - currency code
-value : float
+dest_addr : str
+callback : str
+api_code : str (optional)
 ```
 
 Usage:
 ```python
-btc_amount = exchangerates.to_btc('USD', 4342.11)
+from blockchain import receive
+
+resp = receive.receive('1hNapz1CuH4DhnV1DFHH7hafwDE8FJRheA', 'http://your.url.com')
+
 ```
 
 ###Response object field definitions
 
-####`Currency`
+####`ReceiveResponse`
 
 ```
-last : float
-buy : float
-sell : float
-symbol : str
-p15min : float - 15 minute delayed price
+fee_percent : int
+destination_address : str
+input_address : str
+callback_url : str
 ```
