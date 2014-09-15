@@ -2,7 +2,7 @@
 
 An official Python module for interacting with the Blockchain.info API.
 
-##Getting started
+###Getting started
 
 The module consists of the following sub-modules:
 
@@ -15,7 +15,11 @@ The module consists of the following sub-modules:
 
 The main module is called `blockchain`
 
-##Request limits and API keys
+###Error handling
+
+All functions may raise exceptions caused by incorrectly passed parameters or other problems. If a call is rejected server-side, the `APIException` exception will be raised.
+
+###Request limits and API keys
 
 In order to prevent abuse some API methods require an API key approved with some basic contact information and a description of its intended use. Please request an API key [here](https://blockchain.info/api/api_create_code).
 
