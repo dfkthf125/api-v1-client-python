@@ -46,7 +46,6 @@ class Wallet:
     def send_many(self, recipients, from_address = None, fee = None, note = None):
         """Send bitcoin from your wallet to multiple addresses.
 
-        :param str to: recipient bitcoin address
         :param dictionary recipients: dictionary with the structure of 'address':amount
         :param str from_address: specific address to send from (optional)
         :param int fee: transaction fee in satoshi. Must be greater than the default
@@ -64,7 +63,7 @@ class Wallet:
             params['amount'] = amount
             method = 'payment'
         else:
-            params[''] = json.dumps(recipients)
+            params['recipients'] = json.dumps(recipients)
             method = 'sendmany'
         
         if from_address is not None:
@@ -73,8 +72,6 @@ class Wallet:
             params['fee'] = fee
         if note is not None:
             params['note'] = note
-        if self.second_password is not None:
-            params['second_password'] = self.second_password
             
         response = util.call_api("merchant/{0}/{1}".format(self.identifier, method), params)
         json_response = json.loads(response)
