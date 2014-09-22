@@ -1,4 +1,4 @@
-##`blockchaindata` module
+##`blockexplorer` module
 All functions support an optional parameter called `api_code`. It won't be listed with every function description.
 
 ####`get_block`
@@ -11,9 +11,9 @@ block_id : str - block index or hash
 
 Usage:
 ```python
-from blockchain import blockchaindata
+from blockchain import blockexplorer
 
-block = blockchaindata.get_block('000000000000000016f9a2c3e0f4c1245ff24856a79c34806969f5084f410680')
+block = blockexplorer.get_block('000000000000000016f9a2c3e0f4c1245ff24856a79c34806969f5084f410680')
 ```
 
 ####`get_transaction`
@@ -26,7 +26,7 @@ tx_id : str - transaction index or hash
 
 Usage:
 ```python
-tx = blockchaindata.get_transaction('d4af240386cdacab4ca666d178afc88280b620ae308ae8d2585e9ab8fc664a94')
+tx = blockexplorer.get_transaction('d4af240386cdacab4ca666d178afc88280b620ae308ae8d2585e9ab8fc664a94')
 ```
 
 ####`get_block_height`
@@ -39,7 +39,7 @@ height : int - block height
 
 Usage:
 ```python
-blocks = blockchaindata.get_block_height(2570)
+blocks = blockexplorer.get_block_height(2570)
 ```
 
 ####`get_address`
@@ -52,7 +52,7 @@ address : str - address in the base58 or hash160 format
 
 Usage:
 ```python
-address = blockchaindata.get_address('1HS9RLmKvJ7D1ZYgfPExJZQZA1DMU3DEVd')
+address = blockexplorer.get_address('1HS9RLmKvJ7D1ZYgfPExJZQZA1DMU3DEVd')
 ```
 
 ####`get_unspent_outputs`
@@ -65,7 +65,7 @@ address : str - address in the base58 or hash160 format
 
 Usage:
 ```python
-outs = blockchaindata.get_unspent_outputs('1HS9RLmKvJ7D1ZYgfPExJZQZA1DMU3DEVd')
+outs = blockexplorer.get_unspent_outputs('1HS9RLmKvJ7D1ZYgfPExJZQZA1DMU3DEVd')
 ```
 
 ####`get_latest_block`
@@ -73,7 +73,7 @@ Get the latest block on the main chain. Returns a `LatestBlock` object.
 
 Usage:
 ```python
-latest_block = blockchaindata.get_latest_block()
+latest_block = blockexplorer.get_latest_block()
 ```
 
 ####`get_unconfirmed_tx`
@@ -81,7 +81,7 @@ Get a list of currently unconfirmed transactions. Returns an array of `Transacti
 
 Usage:
 ```python
-txs = blockchaindata.get_unconfirmed_tx()
+txs = blockexplorer.get_unconfirmed_tx()
 ```
 
 ####`get_blocks`
@@ -96,7 +96,7 @@ At least one parameter is required.
 
 Usage:
 ```python
-blocks = blockchaindata.get_blocks(pool_name = 'Discus Fish')
+blocks = blockexplorer.get_blocks(pool_name = 'Discus Fish')
 ```
 
 ####`get_inventory_data`
@@ -109,7 +109,7 @@ hash : str - tx or block hash
 
 Usage:
 ```python
-inv = blockchaindata.get_inventory_data('d4af240386cdacab4ca666d178afc88280b620ae308ae8d2585e9ab8fc664a94')
+inv = blockexplorer.get_inventory_data('d4af240386cdacab4ca666d178afc88280b620ae308ae8d2585e9ab8fc664a94')
 ```
 
 ###Response object field definitions
