@@ -172,7 +172,6 @@ n : int
 value : int
 address : str
 tx_index : int
-type : int
 script : str
 spent : bool
 ```
@@ -231,6 +230,4 @@ initial_ip : str
 nconnected : int
 relayed_count : int
 relayed_percent : int
-probable_owners : array of ProbableOwner objects (ip : str, confidence : int)
-mining_nodes : array of MiningNode objects (link : str, name : str)
 ```

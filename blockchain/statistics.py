@@ -23,7 +23,6 @@ def get(api_code = None):
 class Stats:
     def __init__(self, s):
         self.trade_volume_btc = s['trade_volume_btc']
-        self.electricity_consumption = s['electricity_consumption']
         self.miners_revenue_usd = s['miners_revenue_usd']
         self.n_btc_mined = s['n_btc_mined']
         self.trade_volume_usd = s['trade_volume_usd']
@@ -36,11 +35,9 @@ class Stats:
         self.n_blocks_mined = s['n_blocks_mined']
         self.blocks_size = s['blocks_size']
         self.total_fees_btc = s['total_fees_btc']
-        self.miners_operating_margin = s['miners_operating_margin']
         self.total_btc_sent = s['total_btc_sent']
         self.estimated_btc_sent = s['estimated_btc_sent']
-        self.totalbc = s['totalbc']
-        self.electricity_cost_usd = s['electricity_cost_usd']
+        self.totalbtc = s['totalbc']
         self.n_blocks_total = s['n_blocks_total']
         self.nextretarget = s['nextretarget']
         self.estimated_transaction_volume_usd = s['estimated_transaction_volume_usd']

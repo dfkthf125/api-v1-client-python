@@ -206,7 +206,6 @@ class Output:
         self.value = o['value']
         self.address = o['addr']
         self.tx_index = o['tx_index']
-        self.type = o['type']
         self.script = o['script']
         self.spent = o['spent']
 
@@ -253,22 +252,3 @@ class InventoryData:
         self.nconnected = int(i['nconnected'])
         self.relayed_count = int(i['relayed_count'])
         self.relayed_percent = int(i['relayed_percent'])
-        self.probable_owners =[]
-        self.mining_nodes = []
-        
-        for o in i['probable_owners']:
-            owner = ProbableOwner()
-            owner.ip = o['ip']
-            owner.confidence = int(o['confidence'])
-            probable_owners.append(owner)
-        
-        for m in i['mining_nodes']:
-            node = MiningNode()
-            node.link = m['link']
-            node.name = m['name']
-            
-class ProbableOwner:
-    pass
-    
-class MiningNode:
-    pass
