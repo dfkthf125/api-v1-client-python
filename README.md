@@ -4,6 +4,12 @@ An official Python module for interacting with the Blockchain.info API.
 
 ###Getting started
 
+```
+$ git clone https://github.com/blockchain/api-v1-client-python
+$ cd api-v1-client-python
+$ python setup.py install
+```
+
 The module consists of the following sub-modules:
 
 * `blockexplorer` ([docs](docs/blockexplorer.md)) ([api/blockchain_api][api1])
