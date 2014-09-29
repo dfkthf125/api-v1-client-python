@@ -8,5 +8,5 @@ setup(name='blockchain',
       author='Blockchain.info',
       author_email='support@blockchain.zendesk.com',
       url='https://github.com/blockchain/api-v1-client-python',
-      packages=['./blockchain']
+      packages=['blockchain']
       )
