@@ -221,6 +221,9 @@ class Transaction:
         self.size = t['size']
         self.inputs = [Input(i) for i in t['inputs']]
         self.outputs = [Output(o) for o in t['out']]
+        
+        if self.block_height is None:
+            self.block_height = -1
     
 class Block:
     def __init__(self, b):

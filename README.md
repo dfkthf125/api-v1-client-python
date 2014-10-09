@@ -4,6 +4,13 @@ An official Python module for interacting with the Blockchain.info API.
 
 ###Getting started
 
+Installation via pip:
+
+```
+$ pip install blockchain
+```
+
+Manual installation:
 ```
 $ git clone https://github.com/blockchain/api-v1-client-python
 $ cd api-v1-client-python

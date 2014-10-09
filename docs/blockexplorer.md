@@ -139,7 +139,7 @@ transactions : array of Transaction objects
 
 ```
 double_spend : bool
-block_height : int
+block_height : int (if -1, the tx is unconfirmed)
 time : int
 relayed_by : str
 hash : str
