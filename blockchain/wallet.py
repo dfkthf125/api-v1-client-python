@@ -3,8 +3,8 @@ at https://blockchain.info/api/blockchain_wallet_api
 
 """
 
-import util
 import json
+from . import util
 from .exceptions import *
  
 class Wallet:

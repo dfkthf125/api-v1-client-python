@@ -2,9 +2,8 @@
 https://blockchain.info/api/exchange_rates_api
 """
 
-import urllib2
-import util
 import json
+from . import util
 
 def get_ticker(api_code = None):
     """Call the 'ticker' method and return a dictionary
@@ -39,7 +38,7 @@ def to_btc(ccy, value, api_code = None):
     res = 'tobtc?currency={0}&value={1}'.format(ccy, value)
     if api_code is not None:
         res += '&api_code=' + api_code
-    return util.call_api(res)
+    return float(util.call_api(res))
     
 class Currency:
     def __init__(self, last, buy, sell, symbol, p15min):

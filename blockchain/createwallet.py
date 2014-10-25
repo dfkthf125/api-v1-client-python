@@ -3,7 +3,7 @@ at https://blockchain.info/api/create_wallet
 
 """
 
-import util
+from . import util
 import json
 
 def create_wallet(password, api_code, priv = None, label = None, email = None):

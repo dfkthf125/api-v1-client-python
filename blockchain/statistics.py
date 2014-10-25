@@ -3,7 +3,7 @@ at https://blockchain.info/api/charts_api
 
 """
 
-import util
+from . import util
 import json
 
 def get(api_code = None):

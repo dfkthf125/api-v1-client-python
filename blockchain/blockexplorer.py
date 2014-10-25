@@ -3,7 +3,7 @@ at https://blockchain.info/api/blockchain_api
 
 """
 
-import util
+from . import util
 import json
 
 def get_block(block_id, api_code = None):

@@ -2,8 +2,7 @@
 at https://blockchain.info/api/api_receive
 """
 
-import urllib2
-import util
+from . import util
 import json
 
 class ReceiveResponse:

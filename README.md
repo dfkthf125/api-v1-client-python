@@ -1,6 +1,6 @@
 #Blockchain API library (Python, v1)
 
-An official Python module for interacting with the Blockchain.info API.
+An official Python module for interacting with the Blockchain.info API. Compatible with both Python 2 and Python 3.
 
 ###Getting started
 
