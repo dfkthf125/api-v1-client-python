@@ -22,6 +22,7 @@ The module consists of the following sub-modules:
 * `blockexplorer` ([docs](docs/blockexplorer.md)) ([api/blockchain_api][api1])
 * `createwallet` ([docs](docs/createwallet.md)) ([api/create_wallet][api2])
 * `exchangerates` ([docs](docs/exchangerates.md)) ([api/exchange\_rates\_api][api3])
+* `pushtx` ([docs](docs/pushtx.md)) ([pushtx][api7])
 * `receive` ([docs](docs/receive.md)) ([api/api_receive][api4])
 * `statistics` ([docs](docs/statistics.md)) ([api/charts_api][api5])
 * `wallet` ([docs](docs/wallet.md)) ([api/blockchain\_wallet\_api][api6])
@@ -31,6 +32,15 @@ The main module is called `blockchain`
 ###Error handling
 
 All functions may raise exceptions caused by incorrectly passed parameters or other problems. If a call is rejected server-side, the `APIException` exception will be raised.
+
+###Connection timeouts
+
+It is possible to set arbitrary connection timeouts.
+
+```python
+from blockchain import util
+util.TIMEOUT = 5 #time out after 5 seconds
+```
 
 ###Request limits and API keys
 
@@ -44,3 +54,4 @@ The same API key can be used to bypass the request limiter.
 [api4]: https://blockchain.info/api/api_receive
 [api5]: https://blockchain.info/api/charts_api
 [api6]: https://blockchain.info/api/blockchain_wallet_api
+[api7]: https://blockchain.info/pushtx

@@ -2,6 +2,7 @@ from .exceptions import *
 import sys
 
 BASE_URL = "https://blockchain.info/"
+TIMEOUT = 10
 
 py_version = sys.version_info[0]
 if py_version >= 3:
@@ -19,7 +20,7 @@ def call_api(resource, data = None):
     try:
         payload = None if data is None else urlencode(data)
         if py_version >= 3 and payload is not None: payload = payload.encode('UTF-8')
-        response = urlopen(BASE_URL + resource, payload).read()
+        response = urlopen(BASE_URL + resource, payload, timeout = TIMEOUT).read()
         return handle_response(response)
             
     except HTTPError as e:

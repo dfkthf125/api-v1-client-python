@@ -204,7 +204,7 @@ class Output:
     def __init__(self, o):
         self.n = o['n']
         self.value = o['value']
-        self.address = o['addr']
+        self.address = o.get('addr')
         self.tx_index = o['tx_index']
         self.script = o['script']
         self.spent = o['spent']
